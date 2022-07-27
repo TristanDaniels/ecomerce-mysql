@@ -46,15 +46,14 @@ router.post("/", (req, res) => {
 });
 
 // Delete by id
-router.delete("/:id", (req, res) => {
-  const { user_id } = req.params;
+router.delete("/users/:id", (req, res) => {
   try {
     con.query(
-      `DELETE FROM users WHERE id=${user_id}`,
+      `DELETE FROM users WHERE user_id=${req.params.id}`,
 
       (err, result) => {
         if (err) throw err;
-        res.send(result);
+        res.send("User successfully deleted");
       }
     );
   } catch (error) {

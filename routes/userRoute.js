@@ -17,6 +17,31 @@ router.post("/", (req, res) => {
   const {
     email,
     password,
+    full_password,
+    billing_address,
+    default_shipping_address,
+    country,
+    phone,
+    user_type,
+  } = req.body;
+  try {
+    con.query(
+      `INSERT INTO users (email, password, full_password, billing_address, default_shipping_address, country, phone, user_type) values ('${email}','${password}','${full_password}','${billing_address}','${default_shipping_address}','${country}','${phone}','${user_type}')`,
+      (err, result) => {
+        if (err) throw err;
+        res.send(result);
+      }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+// Edit
+router.patch("/:id", (req, res) => {
+  const {
+    email,
+    password,
     full_name,
     billing_address,
     default_shipping_address,
@@ -26,15 +51,7 @@ router.post("/", (req, res) => {
   } = req.body;
   try {
     con.query(
-      `INSERT INTO users (email, password, full_name, billing_address, default_shipping_address, country, phone, user_type) values ('${email}',
-      '${password}',
-      '${full_name}',
-      '${billing_address}',
-      '${default_shipping_address}',
-      '${country}',
-      '${phone}',
-      '${user_type}')`,
-
+      `UPDATE products set email = "${email}", password = "${password}", full_name = "${full_name}", billing_addresses = "${billing_address}", default_shipping_address = "${default_shipping_address}", country = "${country}", phone = "${phone}", user_type = "${user_type}" WHERE product_id = "${req.params.id}"`,
       (err, result) => {
         if (err) throw err;
         res.send(result);
@@ -42,6 +59,7 @@ router.post("/", (req, res) => {
     );
   } catch (error) {
     console.log(error);
+    res.status(400).send(error);
   }
 });
 
@@ -53,7 +71,7 @@ router.delete("/users/:id", (req, res) => {
 
       (err, result) => {
         if (err) throw err;
-        res.send("User successfully deleted");
+        res.send(result);
       }
     );
   } catch (error) {

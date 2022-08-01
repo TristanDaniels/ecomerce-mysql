@@ -22,8 +22,8 @@ app.use("/users", userRoute);
 app.use("/products", productRoute);
 app.use("/orders", orderRoute);
 app.use("/categories", categoryRoute);
-app.use("/order_detail", order_detailRoute);
-app.use("/product_category", product_categoryRoute);
+app.use("/order_details", order_detailRoute);
+app.use("/product_categories", product_categoryRoute);
 
 app.listen(app.get("port"), () => {
   console.log(`Listening for calls on port ${app.get("port")}`);

@@ -17,7 +17,6 @@ router.post("/", (req, res) => {
   const {
     user_id,
     amount,
-    full_name,
     shipping_address,
     order_email,
     order_date,
@@ -25,7 +24,7 @@ router.post("/", (req, res) => {
   } = req.body;
   try {
     con.query(
-      `INSERT INTO orders (user_id, amount, full_name, shipping_address, order_email, order_date, order_status) values ('${user_id}','${amount}','${full_name}','${shipping_address}','${order_email}','${order_date}','${order_status}'`,
+      `INSERT INTO orders (user_id, amount, shipping_address, order_email, order_date, order_status) values ('${user_id}','${amount}','${shipping_address}','${order_email}','${order_date}','${order_status}'`,
       (err, result) => {
         if (err) throw err;
         res.send(result);
@@ -44,7 +43,7 @@ router.delete("/orders/:id", (req, res) => {
 
       (err, result) => {
         if (err) throw err;
-        res.send("order successfully deleted");
+        res.send(result);
       }
     );
   } catch (error) {

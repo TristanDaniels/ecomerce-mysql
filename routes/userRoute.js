@@ -17,7 +17,6 @@ router.post("/", (req, res) => {
   const {
     email,
     password,
-    full_password,
     billing_address,
     default_shipping_address,
     country,
@@ -26,7 +25,7 @@ router.post("/", (req, res) => {
   } = req.body;
   try {
     con.query(
-      `INSERT INTO users (email, password, full_password, billing_address, default_shipping_address, country, phone, user_type) values ('${email}','${password}','${full_password}','${billing_address}','${default_shipping_address}','${country}','${phone}','${user_type}')`,
+      `INSERT INTO users (email, password, full_password, billing_address, default_shipping_address, country, phone, user_type) values ('${email}','${password}','${billing_address}','${default_shipping_address}','${country}','${phone}','${user_type}')`,
       (err, result) => {
         if (err) throw err;
         res.send(result);

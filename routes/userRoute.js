@@ -117,7 +117,7 @@ router.post("/register", (req, res) => {
     let sql = "INSERT INTO users SET ?";
     //This is the body im requesting
     const {
-      full_name,
+      full_name, 
       email,
       password,
       user_type,

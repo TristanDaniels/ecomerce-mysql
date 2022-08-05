@@ -37,3 +37,7 @@ app.use(express.static("public"));
 app.get("/", function (req, res) {
   res.sendFile(_dirname + "/" + "register.html");
 });
+app.use(express.static("public"));
+app.get("/", function (req, res) {
+  res.sendFile(_dirname + "/" + "reset_password.html");
+});
